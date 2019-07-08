@@ -1,68 +1,139 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Star Wars Robot Card Collection
+`Live:` https://devchia254.github.io/swapi_robots/
 
-## Available Scripts
+A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
 
-In the project directory, you can run:
+## Info
+- Star Wars character data retrieved from the API: https://swapi.co/api/people/
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features & Code Snippets
+Below are some of the features and code extracts of this coding exercise.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+### Fetch API
+---
+Before storing the character's data in the  `state`, an array  is created for listing all 10 URLs for fetching all the character's data.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once all the URLs are listed then the JSON data is fetched from them using `Promises.all` and stored in the `state` as an attribute of `api_data`.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+##### App.js:
+```javascript
+componentDidMount() {
+    const urlsArray = [];
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    for(let i = 1; i < 10; i++) {
+      urlsArray.push('https://swapi.co/api/people/?page=' + i.toString());
+    }
 
-### `npm run eject`
+    const charsData = [];
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    const charsFetch = urlsArray.map(url => fetch(url)
+        .then(res => res.json())
+        .then(data => data.results.map(user => charsData.push(user)))
+    );
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Promise.all(charsFetch)
+      .then(results => this.setState({api_data: charsData}))
+      .catch((err) => console.log('ERROR, please check', err))
+ }
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Dynamic Search
+----
+`onSearchChange` is a function used for enabling the search feature in the `SearchBox` component.
 
-## Learn More
+The `SearchBox` component narrows down the results by using `array.filter()` to filter through the full list of star wars data before feeding the list to the CardList component to display.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Sorting the star wars data and converting it to lowercase provides convenience in terms of display and comparison of data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##### App.js:
+```javascript
+onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value })
+}
 
-### Code Splitting
+render () {
+	const { api_data, searchfield } = this.state;
+	   
+	const sortedData = api_data.sort((a, b) => a.name.localeCompare(b.name)); // Sorts fetched data
+	
+	const filteredData = sortedData.filter(person =>{
+		return person.name.toLowerCase().includes(searchfield.toLowerCase()); // Converts all names to lowercase for searchfield
+	})
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+### Fetch JSON data again:
+----
+Since the 'species' attribute provides a URL as a value, therefore JSON data must be fetched again from the URL value to get the 'species' value.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+By using `this.props.species[0]`, the first value is retrieved from the URL then stored in the  `state` for the Card component.
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+##### Card.js:
+```javascript
+componentDidMount() {
+    // SPECIES //
+      fetch(this.props.species[0])
+        .then(resp => resp.json())
+        .then(json => this.setState({species: json.name}))
+        .catch(() => this.setState({species: 'Species Unknown'}));
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Generate Cards:
+----
+The CardList component accesses `api_data` from the `state` of the App component, through the use of `props` i.e. `filteredData`.
 
-### Deployment
+Once the `api_data` is accessed then each character's data is mapped into individual card. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+##### CardList.js:
+```javascript
+const CardList = ({ api_data }) => {
+  console.log('api data', api_data);
+  const listPeople = api_data.map((user, i) => {
+    return (
+      <Card
+        id = {i+=1}
+        key={user.url}
+        name={user.name}
+        weight={user.mass}
+        birth={user.birth_year}
+        gender={user.gender}
+        species={user.species}
+      />
+    )}
+  )
+  
+  return (
+    <div>
+      {listPeople}
+    </div>
+  );
+}
+```
 
-### `npm run build` fails to minify
+## NPM Dev Packages:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+`gh-pages` was used to deploy the react app on Github Pages.
+
+`react` , `react-dom` and `react-scripts`, were initiated from the create-react-app command.
+
+`tachyons` is a package for styling the site with greater ease.
+
+
+```json
+"dependencies": {
+    "gh-pages": "^2.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "tachyons": "^4.11.1"
+  }
+```

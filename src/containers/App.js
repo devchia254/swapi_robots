@@ -37,7 +37,7 @@ class App extends Component {
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value })
-    console.log(event.target.value, "searchbox");
+    // console.log(event.target.value, "searchbox");
   }
 
   render() {
@@ -50,7 +50,7 @@ class App extends Component {
       return person.name.toLowerCase().includes(searchfield.toLowerCase()); // Converts all names to lowercase for searchfield
     })
 
-    console.log(filteredData, "filter")
+    // console.log(filteredData, "filter")
 
     return !api_data.length ?
       <h1>Loading</h1> :
