@@ -4,20 +4,18 @@
 A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
 
 ## Info
-- Star Wars character data retrieved from the API: https://swapi.co/api/people/
-
+- Star Wars character data retrieved from the API: https://swapi.co/api/people/.
+- React app was created using the command `npm install -g create-react-app`
+- Each robot generated is unique to its character and fetched from the API:  `https://robohash.org/${id}?size=200x200`
 
 ## Features & Code Snippets
 Below are some of the features and code extracts of this coding exercise.
-
 
 ### Fetch API
 ---
 Before storing the character's data in the  `state`, an array  is created for listing all 10 URLs for fetching all the character's data.
 
-Once all the URLs are listed then the JSON data is fetched from them using `Promises.all` and stored in the `state` as an attribute of `api_data`.
-
-
+Once all the URLs are listed then the JSON data is fetched by using `Promises.all` and stored in the `state`, within `api_data`.
 
 ##### App.js:
 ```javascript
@@ -41,14 +39,13 @@ componentDidMount() {
  }
 ```
 
-
 ### Dynamic Search
 ----
 `onSearchChange` is a function used for enabling the search feature in the `SearchBox` component.
 
-The `SearchBox` component narrows down the results by using `array.filter()` to filter through the full list of star wars data before feeding the list to the CardList component to display.
+The `searchfield` narrows down the results by using `array.filter()` method filter on the full list of star wars data. The filtered results are then reflected on the CardList component, simultaneously.
 
-Sorting the star wars data and converting it to lowercase provides convenience in terms of display and comparison of data.
+Sorting the star wars data and converting it to lowercase provides convenience, in terms of display and comparison of data.
 
 ##### App.js:
 ```javascript
@@ -66,7 +63,6 @@ render () {
 	})
 }
 ```
-
 
 ### Fetch JSON data again:
 ----
@@ -96,19 +92,20 @@ Once the `api_data` is accessed then each character's data is mapped into indivi
 ##### CardList.js:
 ```javascript
 const CardList = ({ api_data }) => {
-  console.log('api data', api_data);
+
   const listPeople = api_data.map((user, i) => {
-    return (
-      <Card
-        id = {i+=1}
-        key={user.url}
-        name={user.name}
-        weight={user.mass}
-        birth={user.birth_year}
-        gender={user.gender}
-        species={user.species}
-      />
-    )}
+      return (
+        <Card
+          id = {i+=1}
+          key={user.url}
+          name={user.name}
+          weight={user.mass}
+          birth={user.birth_year}
+          gender={user.gender}
+          species={user.species}
+        />
+      );
+    }
   )
   
   return (
