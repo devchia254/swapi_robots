@@ -83,7 +83,7 @@ componentDidMount() {
 }
 ```
 
-### Generate Cards:
+### Generate Character Info:
 ----
 The CardList component accesses `api_data` from the `state` of the App component, through the use of `props` i.e. `filteredData`.
 
