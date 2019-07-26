@@ -52,3 +52,49 @@ h1.Title {
 .Card:hover {
 	box-shadow: 0 0 2px 1px #FFFDE7, 0 0 4px 2px #FFF59D, 0 0 16px 8px #FFEE58;
 }
+
+.loading {
+	display: flex;
+	/* min-height: 100vh; */
+	flex-flow: column;
+	justify-content: center; 
+	align-items: center;
+	padding-top: 10em;
+}
+
+div.loading-icon {
+	display: flex;
+	width: 5.5em;
+	height: 5.5em;
+	border: 5px solid transparent;
+	border-top-color: #FFEE58;
+	border-bottom-color: #FFEE58;
+	border-radius: 50%;
+	animation: spin 1.5s linear infinite;
+}
+  
+div.loading-icon:before {
+	content: '';
+	display: block;
+	margin: auto;
+	width: 1.75em;
+	height: 1.75em;
+	border: 3px solid #FFEE58;
+	border-radius: 50%;
+	animation: pulse 1s alternate ease-in-out infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes pulse {
+	from {
+		transform: scale(0.5);
+	}
+	to {
+		transform: scale(1);
+	}
+}
