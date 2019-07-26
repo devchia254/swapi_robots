@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/swapi_robots/static/css/main.06229612.chunk.css",
-    "main.js": "/swapi_robots/static/js/main.bf9bedc1.chunk.js",
-    "main.js.map": "/swapi_robots/static/js/main.bf9bedc1.chunk.js.map",
+    "main.css": "/swapi_robots/static/css/main.e0b97420.chunk.css",
+    "main.js": "/swapi_robots/static/js/main.ee595c7d.chunk.js",
+    "main.js.map": "/swapi_robots/static/js/main.ee595c7d.chunk.js.map",
     "runtime~main.js": "/swapi_robots/static/js/runtime~main.53c5c576.js",
     "runtime~main.js.map": "/swapi_robots/static/js/runtime~main.53c5c576.js.map",
     "static/css/2.31dafeb2.chunk.css": "/swapi_robots/static/css/2.31dafeb2.chunk.css",
     "static/js/2.9dade313.chunk.js": "/swapi_robots/static/js/2.9dade313.chunk.js",
     "static/js/2.9dade313.chunk.js.map": "/swapi_robots/static/js/2.9dade313.chunk.js.map",
     "index.html": "/swapi_robots/index.html",
-    "precache-manifest.564c3281cb2b715fc05faee2d4ce3864.js": "/swapi_robots/precache-manifest.564c3281cb2b715fc05faee2d4ce3864.js",
+    "precache-manifest.035e7c198fef4ffdab8aef44adee930f.js": "/swapi_robots/precache-manifest.035e7c198fef4ffdab8aef44adee930f.js",
     "service-worker.js": "/swapi_robots/service-worker.js",
     "static/css/2.31dafeb2.chunk.css.map": "/swapi_robots/static/css/2.31dafeb2.chunk.css.map",
-    "static/css/main.06229612.chunk.css.map": "/swapi_robots/static/css/main.06229612.chunk.css.map",
+    "static/css/main.e0b97420.chunk.css.map": "/swapi_robots/static/css/main.e0b97420.chunk.css.map",
     "static/media/App.css": "/swapi_robots/static/media/Starjedi.7248a9a5.eot",
     "static/media/index.css": "/swapi_robots/static/media/starwars_bg.ee763277.jpg"
   }
