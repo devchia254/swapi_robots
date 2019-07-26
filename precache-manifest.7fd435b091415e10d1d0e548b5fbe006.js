@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "051a26b350ee96ff9f40570de1a17879",
+    "revision": "a626041d00271780ee7a5c453899ab1f",
     "url": "/swapi_robots/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/swapi_robots/static/css/2.31dafeb2.chunk.css"
   },
   {
-    "revision": "c75bd22cd3d7722778e3",
-    "url": "/swapi_robots/static/css/main.e0b97420.chunk.css"
+    "revision": "d2b77ccc1459da3a85a1",
+    "url": "/swapi_robots/static/css/main.eef537d2.chunk.css"
   },
   {
     "revision": "f39a643f8ecf15d2111c",
     "url": "/swapi_robots/static/js/2.9dade313.chunk.js"
   },
   {
-    "revision": "c75bd22cd3d7722778e3",
+    "revision": "d2b77ccc1459da3a85a1",
     "url": "/swapi_robots/static/js/main.ee595c7d.chunk.js"
   },
   {
