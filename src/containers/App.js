@@ -53,17 +53,20 @@ class App extends Component {
     // console.log(filteredData, "filter")
 
     return !api_data.length ?
-      <h1>Loading</h1> :
-      (
-        <div className='tc'>
-          <h1 className='f1 Title'>STAR WARS</h1>
-          <h2 className='Sub-title'>Robot Card Collection</h2>
-          <SearchBox searchChange={this.onSearchChange}/>
-          <Scroll>
-            <CardList api_data={filteredData} />
-          </Scroll>
-        </div>
-      );
+      <div className="loading">
+        <div className="loading-icon"></div>
+        <h1>Loading</h1>
+      </div> 
+      : (
+          <div className='tc'>
+            <h1 className='f1 Title'>STAR WARS</h1>
+            <h2 className='Sub-title'>Robot Card Collection</h2>
+            <SearchBox searchChange={this.onSearchChange}/>
+            <Scroll>
+              <CardList api_data={filteredData} />
+            </Scroll>
+          </div>
+        );
   }
 }
 
