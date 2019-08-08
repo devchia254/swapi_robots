@@ -1,6 +1,8 @@
 # Star Wars Robot Card Collection
 `Live:` https://devchia254.github.io/swapi_robots/
 
+![AJAX Fetching](./README_resources/pj2.png)
+
 A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
 
 ## Info
@@ -13,6 +15,8 @@ Below are some of the features and code extracts of this coding exercise.
 
 ### Fetch API
 ---
+![AJAX Fetching](./README_resources/gif-ajax.gif)
+
 Before storing the character's data in the  `state`, an array  is created for listing all 10 URLs for fetching all the character's data.
 
 Once all the URLs are listed then the JSON data is fetched by using `Promises.all` and stored in the `state`, within `api_data`.
@@ -41,6 +45,8 @@ componentDidMount() {
 
 ### Dynamic Search
 ----
+![Dynamic Search Feature](./README_resources/gif-search.gif)
+
 `onSearchChange` is a function used for enabling the search feature in the `SearchBox` component.
 
 The `searchfield` narrows down the results by using `array.filter()` method filter on the full list of star wars data. The filtered results are then reflected on the CardList component, simultaneously.
