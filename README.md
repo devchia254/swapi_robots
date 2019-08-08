@@ -1,7 +1,7 @@
 # Star Wars Robot Card Collection
 `Live:` https://devchia254.github.io/swapi_robots/
 
-![AJAX Fetching](./README_resources/pj2.png)
+![App Snapshot](./README_resources/pj2.PNG)
 
 A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
 
