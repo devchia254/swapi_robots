@@ -15,7 +15,7 @@ Below are some of the features and code extracts of this coding exercise.
 
 ### Fetch API
 ---
-![AJAX Fetching](./README_resources/gif-ajax.gif)
+![AJAX Fetching](./README_resources/gif-ajax2.gif)
 
 Before storing the character's data in the  `state`, an array  is created for listing all 10 URLs for fetching all the character's data.
 
