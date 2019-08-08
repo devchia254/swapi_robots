@@ -1,7 +1,7 @@
 # Star Wars Robot Card Collection
 `Live:` https://devchia254.github.io/swapi_robots/
 
-![App Snapshot](./README_resources/pj2.PNG)
+![App Snapshot](./README_resources/pj.png)
 
 A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
 
@@ -45,7 +45,7 @@ componentDidMount() {
 
 ### Dynamic Search
 ----
-![Dynamic Search Feature](./README_resources/gif-search.gif)
+![Dynamic Search Feature](./README_resources/gif-search2.gif)
 
 `onSearchChange` is a function used for enabling the search feature in the `SearchBox` component.
 
