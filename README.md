@@ -10,6 +10,12 @@ A web app that displays the characters of Star Wars in the form of robots and ca
 - React app was created using the command `npm install -g create-react-app`
 - Each robot generated is unique to its character and fetched from the API:  `https://robohash.org/${id}?size=200x200`
 
+## Purpose
+The objective is to learn:-
+
+- The fundamentals of how to fetch data from an API
+- How to use AJAX and Promises
+
 ## Features & Code Snippets
 Below are some of the features and code extracts of this coding exercise.
 
