@@ -17,7 +17,7 @@ The objective is to learn:-
 - How to use AJAX and Promises
 
 ## Features & Code Snippets
-Below are some of the features and code extracts of this coding exercise.
+Below are some of the key features and code extracts of this web app.
 
 ### Fetch API
 ---
