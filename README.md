@@ -15,6 +15,7 @@ The objective is to learn:-
 
 - The fundamentals of how to fetch data from an API
 - How to use AJAX and Promises
+- Familiarise with React
 
 ## Features & Code Snippets
 Below are some of the key features and code extracts of this web app.
