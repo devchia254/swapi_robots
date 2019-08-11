@@ -6,7 +6,7 @@
 A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
 
 ## Info
-- Star Wars character data retrieved from the API: https://swapi.co/api/people/.
+- Star Wars character data retrieved from [SWAPI.](https://swapi.co/api/people/)
 - React app was created using the command `npm install -g create-react-app`
 - Each robot generated is unique to its character and fetched from the API:  `https://robohash.org/${id}?size=200x200`
 
