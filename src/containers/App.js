@@ -21,7 +21,7 @@ class App extends Component {
   fetchPeopleUrls = () => {
     const urlsArray = [];
 
-    // Loop creation of URls and push to
+    // Create page URLs and push to array
     for (let i = 1; i < 10; i++) {
       urlsArray.push("https://swapi.dev/api/people/?page=" + i.toString());
     }
@@ -53,25 +53,12 @@ class App extends Component {
       return person.name.toLowerCase().includes(searchfield.toLowerCase()); // Converts all names to lowercase for searchfield
     });
 
-    // console.log(filteredData, "filter")
-
-    // return !api_data.length ? (
-    //   <div className="loading">
-    //     <div className="loading-icon"></div>
-    //     <h1>Loading</h1>
-    //   </div>
-    // ) : (
-    //   <div className="tc">
-    //     <h1 className="f1 Title">STAR WARS</h1>
-    //     <h2 className="Sub-title">Robot Card Collection</h2>
-    //     <SearchBox searchChange={this.onSearchChange} />
-    //     <Scroll>
-    //       <CardList api_data={filteredData} />
-    //     </Scroll>
-    //   </div>
-    // );
-
-    return (
+    return !api_data.length ? (
+      <div className="loading">
+        <div className="loading-icon"></div>
+        <h1>Loading</h1>
+      </div>
+    ) : (
       <div className="tc">
         <h1 className="f1 Title">STAR WARS</h1>
         <h2 className="Sub-title">Robot Card Collection</h2>
