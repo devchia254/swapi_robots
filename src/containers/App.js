@@ -15,28 +15,33 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.fetchPeopleUrls();
+  }
+
+  fetchPeopleUrls = () => {
     const urlsArray = [];
 
+    // Create page URLs and push to array
     for (let i = 1; i < 10; i++) {
       urlsArray.push("https://swapi.dev/api/people/?page=" + i.toString());
     }
 
-    const charsData = [];
+    // Fetch array of URLs
+    Promise.all(urlsArray.map((url) => fetch(url).then((res) => res.json())))
+      .then((data) => {
+        const combinePeople = [];
 
-    const charsFetch = urlsArray.map((url) =>
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => data.results.map((user) => charsData.push(user)))
-    );
+        data.map((people, i) => {
+          return combinePeople.push(...people.results);
+        });
 
-    Promise.all(charsFetch)
-      .then((results) => this.setState({ api_data: charsData }))
-      .catch((err) => console.log("ERROR, please check", err));
-  }
+        this.setState({ api_data: combinePeople });
+      })
+      .catch((error) => console.log("Erorr fetching from SWAPI: ", error));
+  };
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });
-    // console.log(event.target.value, "searchbox");
   };
 
   render() {
@@ -47,8 +52,6 @@ class App extends Component {
     const filteredData = sortedData.filter((person) => {
       return person.name.toLowerCase().includes(searchfield.toLowerCase()); // Converts all names to lowercase for searchfield
     });
-
-    // console.log(filteredData, "filter")
 
     return !api_data.length ? (
       <div className="loading">

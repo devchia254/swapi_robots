@@ -13,6 +13,7 @@ const CardList = ({ api_data }) => {
         birth={user.birth_year}
         gender={user.gender}
         species={user.species}
+        films={user.films}
       />
     );
   });

@@ -1,100 +1,105 @@
-
 @font-face {
-	font-family:"Star Jedi";
-	src:url("Starjedi.eot?") format("eot"),
-		url("Starjedi.woff") format("woff"),
-		url("Starjedi.ttf") format("truetype"),
-		url("Starjedi.svg#StarJedi") format("svg");
-	font-weight:normal;
-	font-style:normal;}
+  font-family: "Star Jedi";
+  src: url("Starjedi.eot?") format("eot"), url("Starjedi.woff") format("woff"),
+    url("Starjedi.ttf") format("truetype"),
+    url("Starjedi.svg#StarJedi") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
 
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1 {
-	font-family: 'star jedi';
-	font-weight: 200;
-	color: #fffc00;
+  font-family: "star jedi";
+  font-weight: 200;
+  color: #fffc00;
 }
 
-h2, h3, h4, h5, h6, p {
-	font-family: 'Roboto', sans-serif;
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Roboto", sans-serif;
 }
+
 h2 {
-	font-size: 3rem;
-	color: #FFFF8D;
+  font-size: 3rem;
+  color: #ffff8d;
 }
 
 h2.Sub-title {
-	margin-top: 0;
-	margin-bottom: 0.25em;
-	text-shadow: 1px 1px 1px #A39A4C,
-	1px 2px 1px #A39A4C,
-	1px 3px 1px #A39A4C,
-	1px 4px 1px #A39A4C,
-	1px 5px 1px #A39A4C,
-	1px 12px 4px rgba(16,16,16,0.4),/* shadow */
-	1px 16px 8px rgba(16,16,16,0.2),/* shadow */
-	1px 15px 25px rgba(16,16,16,0.2),   
-	1px 20px 40px rgba(16,16,16,0.4);
+  margin-top: 0;
+  margin-bottom: 0.25em;
+  text-shadow: 1px 1px 1px #a39a4c, 1px 2px 1px #a39a4c, 1px 3px 1px #a39a4c,
+    1px 4px 1px #a39a4c, 1px 5px 1px #a39a4c, 1px 12px 4px rgba(16, 16, 16, 0.4),
+    /* shadow */ 1px 16px 8px rgba(16, 16, 16, 0.2),
+    /* shadow */ 1px 15px 25px rgba(16, 16, 16, 0.2),
+    1px 20px 40px rgba(16, 16, 16, 0.4);
 }
 
 h1.Title {
-	font-size: 6rem;
-	color: black;
-	text-shadow: 0px 0px 4px #FFFDE7, 0px 0px 8px #FFF59D, 0px 0px 38px #FFEE58;
-	margin-bottom: 0.25em;
+  font-size: 6rem;
+  color: black;
+  text-shadow: 0px 0px 4px #fffde7, 0px 0px 8px #fff59d, 0px 0px 38px #ffee58;
+  margin-bottom: 0.25em;
 }
 
 .Card:hover {
-	box-shadow: 0 0 2px 1px #FFFDE7, 0 0 4px 2px #FFF59D, 0 0 16px 8px #FFEE58;
+  box-shadow: 0 0 2px 1px #fffde7, 0 0 4px 2px #fff59d, 0 0 16px 8px #ffee58;
 }
 
 .loading {
-	display: flex;
-	/* min-height: 100vh; */
-	flex-flow: column;
-	justify-content: center; 
-	align-items: center;
-	padding-top: 10em;
+  display: flex;
+  /* min-height: 100vh; */
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10em;
 }
 
 div.loading-icon {
-	display: flex;
-	width: 5.5em;
-	height: 5.5em;
-	border: 5px solid transparent;
-	border-top-color: #FFEE58;
-	border-bottom-color: #FFEE58;
-	border-radius: 50%;
-	animation: spin 1.5s linear infinite;
+  display: flex;
+  width: 5.5em;
+  height: 5.5em;
+  border: 5px solid transparent;
+  border-top-color: #ffee58;
+  border-bottom-color: #ffee58;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
 }
-  
+
 div.loading-icon:before {
-	content: '';
-	display: block;
-	margin: auto;
-	width: 1.75em;
-	height: 1.75em;
-	border: 3px solid #FFEE58;
-	border-radius: 50%;
-	animation: pulse 1s alternate ease-in-out infinite;
+  content: "";
+  display: block;
+  margin: auto;
+  width: 1.75em;
+  height: 1.75em;
+  border: 3px solid #ffee58;
+  border-radius: 50%;
+  animation: pulse 1s alternate ease-in-out infinite;
 }
 
 @keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {
-	from {
-		transform: scale(0.5);
-	}
-	to {
-		transform: scale(1);
-	}
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+div.films-list {
+  font-family: "Roboto", sans-serif;
 }
