@@ -15,28 +15,33 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.fetchPeopleUrls();
+  }
+
+  fetchPeopleUrls = () => {
     const urlsArray = [];
 
+    // Loop creation of URls and push to
     for (let i = 1; i < 10; i++) {
       urlsArray.push("https://swapi.dev/api/people/?page=" + i.toString());
     }
 
-    const charsData = [];
+    // Fetch array of URLs
+    Promise.all(urlsArray.map((url) => fetch(url).then((res) => res.json())))
+      .then((data) => {
+        const combinePeople = [];
 
-    const charsFetch = urlsArray.map((url) =>
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => data.results.map((user) => charsData.push(user)))
-    );
+        data.map((people, i) => {
+          return combinePeople.push(...people.results);
+        });
 
-    Promise.all(charsFetch)
-      .then((results) => this.setState({ api_data: charsData }))
-      .catch((err) => console.log("ERROR, please check", err));
-  }
+        this.setState({ api_data: combinePeople });
+      })
+      .catch((error) => console.log("Erorr fetching from SWAPI: ", error));
+  };
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });
-    // console.log(event.target.value, "searchbox");
   };
 
   render() {
@@ -50,12 +55,23 @@ class App extends Component {
 
     // console.log(filteredData, "filter")
 
-    return !api_data.length ? (
-      <div className="loading">
-        <div className="loading-icon"></div>
-        <h1>Loading</h1>
-      </div>
-    ) : (
+    // return !api_data.length ? (
+    //   <div className="loading">
+    //     <div className="loading-icon"></div>
+    //     <h1>Loading</h1>
+    //   </div>
+    // ) : (
+    //   <div className="tc">
+    //     <h1 className="f1 Title">STAR WARS</h1>
+    //     <h2 className="Sub-title">Robot Card Collection</h2>
+    //     <SearchBox searchChange={this.onSearchChange} />
+    //     <Scroll>
+    //       <CardList api_data={filteredData} />
+    //     </Scroll>
+    //   </div>
+    // );
+
+    return (
       <div className="tc">
         <h1 className="f1 Title">STAR WARS</h1>
         <h2 className="Sub-title">Robot Card Collection</h2>
