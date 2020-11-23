@@ -41,7 +41,7 @@ class FilmsList extends Component {
 
       const filmsArray = [];
 
-      await response.map((film, i) => {
+      response.map((film, i) => {
         return filmsArray.push(film.title);
       });
 
@@ -51,7 +51,6 @@ class FilmsList extends Component {
         console.log("Fetching films was aborted");
       }
       this.setState({ films: "Cannot fetch data" });
-      // console.log("Error fetching films data: ", error);
     }
   };
 

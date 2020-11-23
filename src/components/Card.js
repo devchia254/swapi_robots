@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import FilmsList from "./FilmsList";
+import FilmsList from "./FilmsList";
 
 class Card extends Component {
   // Abort Network request when component unmounted
@@ -66,7 +66,7 @@ class Card extends Component {
           <b>Species:</b> {this.state.species}
         </p>
         {/* Doing fetching deep within the DOM tree becomes unstable */}
-        {/* <FilmsList films={this.props.films} /> */}
+        <FilmsList films={this.props.films} />
       </div>
     );
   }
