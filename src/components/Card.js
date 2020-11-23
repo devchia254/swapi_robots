@@ -1,48 +1,25 @@
 import React, { Component } from "react";
-import "../containers/App.css";
+// import FilmsList from "./FilmsList";
 
 class Card extends Component {
+  // Abort Network request when component unmounted
+  abortController = new AbortController();
+  signal = this.abortController.signal;
+
   constructor(props) {
     super(props);
     this.state = {
       species: ["Fetching species..."],
-      films: ["Fetching films..."],
     };
   }
 
   componentDidMount() {
     this.fetchSpecies();
-    this.fetchFilms();
   }
 
-  fetchFilms = async () => {
-    // Make all links HTTPS
-    const arrOfFilmUrls = this.props.films.map((url) => {
-      const getHttp = url.substring(0, 4);
-      const afterHttp = url.substring(4);
-      const urlsWithHttps = getHttp + "s" + afterHttp;
-
-      return urlsWithHttps;
-    });
-
-    // Fetch films from API
-    try {
-      const response = await Promise.all(
-        arrOfFilmUrls.map((filmUrl) => fetch(filmUrl).then((res) => res.json()))
-      );
-
-      const filmsArray = [];
-
-      await response.map((film, i) => {
-        return filmsArray.push(film.title);
-      });
-
-      this.setState({ films: filmsArray });
-    } catch (error) {
-      this.setState({ films: "Cannot fetch data" });
-      // console.log("Error fetching films data: ", error);
-    }
-  };
+  componentWillUnmount() {
+    this.abortController.abort();
+  }
 
   fetchSpecies = () => {
     if (this.props.species[0] !== undefined) {
@@ -52,12 +29,17 @@ class Card extends Component {
       const urlsWithHttps = getHttp + "s" + afterHttp;
 
       // Fetch species from API
-      fetch(urlsWithHttps)
+      fetch(urlsWithHttps, { signal: this.signal })
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({ species: data.name });
         })
-        .catch(() => this.setState({ species: "Cannot fetch data" }));
+        .catch((error) => {
+          if (error.name === "AbortError") {
+            console.log("Fetching species was aborted");
+          }
+          this.setState({ species: "Cannot fetch data" });
+        });
     } else {
       this.setState({ species: "Unknown" });
     }
@@ -83,14 +65,8 @@ class Card extends Component {
         <p>
           <b>Species:</b> {this.state.species}
         </p>
-        <div className="films-list">
-          <b>Featured Movies:</b>
-          <ul>
-            {this.state.films.map((film, i) => (
-              <li key={i}>{film}</li>
-            ))}
-          </ul>
-        </div>
+        {/* Doing fetching deep within the DOM tree becomes unstable */}
+        {/* <FilmsList films={this.props.films} /> */}
       </div>
     );
   }
