@@ -3,13 +3,12 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import "./App.css";
-// import { promised } from 'q';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      api_data: [], //empty array to retrieve a list from an API
+      api_data: [], //empty array to retrieve large objects from an API
       searchfield: "",
     };
   }
@@ -19,23 +18,10 @@ class App extends Component {
   }
 
   fetchPeopleUrls = () => {
-    const urlsArray = [];
-
-    // Create page URLs and push to array
-    for (let i = 1; i < 10; i++) {
-      urlsArray.push("https://swapi.dev/api/people/?page=" + i.toString());
-    }
-
-    // Fetch array of URLs
-    Promise.all(urlsArray.map((url) => fetch(url).then((res) => res.json())))
+    fetch(`https://swapi-deno.azurewebsites.net/api/people`)
+      .then((res) => res.json())
       .then((data) => {
-        const combinePeople = [];
-
-        data.map((people, i) => {
-          return combinePeople.push(...people.results);
-        });
-
-        this.setState({ api_data: combinePeople });
+        this.setState({ api_data: data });
       })
       .catch((error) => console.log("Erorr fetching from SWAPI: ", error));
   };

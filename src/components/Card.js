@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import FilmsList from "./FilmsList";
 
 class Card extends Component {
   // Abort Network request when component unmounted
@@ -9,12 +8,14 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      species: ["Fetching species..."],
+      species: "Fetching species...",
+      films: ["Fetching films..."],
     };
   }
 
   componentDidMount() {
     this.fetchSpecies();
+    this.fetchFilms();
   }
 
   componentWillUnmount() {
@@ -23,13 +24,11 @@ class Card extends Component {
 
   fetchSpecies = () => {
     if (this.props.species[0] !== undefined) {
-      // Make all links HTTPS
-      const getHttp = this.props.species[0].substring(0, 4);
-      const afterHttp = this.props.species[0].substring(4);
-      const urlsWithHttps = getHttp + "s" + afterHttp;
-
       // Fetch species from API
-      fetch(urlsWithHttps, { signal: this.signal })
+      fetch(
+        `https://swapi-deno.azurewebsites.net/api/species/${this.props.species[0]}`,
+        { signal: this.signal }
+      )
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({ species: data.name });
@@ -38,10 +37,34 @@ class Card extends Component {
           if (error.name === "AbortError") {
             console.log("Fetching species was aborted");
           }
-          this.setState({ species: "Cannot fetch data" });
+          this.setState({ species: "Cannot fetch Species data" });
         });
     } else {
       this.setState({ species: "Unknown" });
+    }
+  };
+
+  fetchFilms = async () => {
+    // Fetch films from API
+    try {
+      const response = await Promise.all(
+        this.props.films.map((filmId) =>
+          fetch(`https://swapi-deno.azurewebsites.net/api/films/${filmId}`, {
+            signal: this.signal,
+          }).then((res) => res.json())
+        )
+      );
+
+      const filmData = response.map((film, i) => {
+        return film.title;
+      });
+
+      this.setState({ films: filmData });
+    } catch (error) {
+      if (error.name === "AbortError") {
+        console.log("Fetching films was aborted");
+      }
+      this.setState({ films: "Cannot fetch Films data" });
     }
   };
 
@@ -65,8 +88,14 @@ class Card extends Component {
         <p>
           <b>Species:</b> {this.state.species}
         </p>
-        {/* Doing fetching deep within the DOM tree becomes unstable */}
-        <FilmsList films={this.props.films} />
+        <div className="films-list">
+          <b>Featured Movies:</b>
+          <ul>
+            {this.state.films.map((film, i) => (
+              <li key={i}>{film}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
