@@ -127,7 +127,7 @@ fetchSpecies = () => {
 };
 ```
 
-##### FilmsList.js (species):
+##### FilmsList.js (films):
 
 ```javascript
 fetchFilms = async () => {
