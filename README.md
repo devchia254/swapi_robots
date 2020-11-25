@@ -4,7 +4,7 @@
 
 ![App Snapshot](./README_resources/pj.png)
 
-A web app that displays the characters of Star Wars in the form of robots and cards. Each card displays data of each character in Star Wars.
+A web app that displays the characters of Star Wars in cards but in the form of robots.
 
 ## Info
 
